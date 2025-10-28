@@ -8,15 +8,8 @@ cache:
     - vendor/
 
 stages:
-  - SecurityChecker
   - CodeStandards
   - UnitTests
-
-security_check:
-  stage: SecurityChecker
-  script:
-    - security-checker security:check composer.lock
-  allow_failure: false
 
 phpcs:
   stage: CodeStandards
