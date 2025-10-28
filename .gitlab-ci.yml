@@ -14,7 +14,7 @@ stages:
 phpcs:
   stage: CodeStandards
   script:
-    - phpcs --standard=PSR12 --ignore=vendor/ ./src
+    - phpcs --standard=PSR12 --ignore=vendor/ .
   allow_failure: false
 
 phpstan:
