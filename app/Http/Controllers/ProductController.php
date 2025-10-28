@@ -27,7 +27,8 @@ class ProductController extends Controller
             $p->cat_name = $p->category?->name; // !! n+1 problem: one select category.name for each product !!
         }
         // solution to n+1 problem
-        $products = Product::with('category')->get(); // "eager loading" : select * from `category` where `category`.`id` in (1, 2, 3, 4, 5, 6, 7)
+        // "eager loading" : select * from `category` where `category`.`id` in (1, 2, 3, 4, 5, 6, 7)
+        $products = Product::with('category')->get();
 
         $products = Product::where('id', '>', 2)->limit(2)->get();
         $product = Product::all()->first();
@@ -56,7 +57,10 @@ class ProductController extends Controller
         /* RELATION */
         $category_name = Product::all()->first()->category?->name; // needs belongsTo() in Model
         $products = Category::find(4)->products; // ok, category with id=4 exists
-        // $products = Category::find(6)->products; // Nok, category with id=6 does not exists, php error: Attempt to read property "products" on null
+
+        // Nok, category with id=6 does not exists, php error: Attempt to read property "products" on null
+        // $products = Category::find(6)->products;
+        
         $products = Category::find(4)->brol; // prop 'brol' does not exist in Category Model --> return null
         // $products = Category::find(6)->brol; // error: Attempt to read property "brol" on null
         $products = Category::find(6)?->brol; // ok : return null, category with id=6 does not exists
