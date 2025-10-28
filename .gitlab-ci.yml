@@ -14,13 +14,13 @@ stages:
 phpcs:
   stage: CodeStandards
   script:
-    - phpcs --standard=PSR12 --ignore=vendor/ ./app/http/controllers/
+    - phpcs --standard=PSR12 --ignore=vendor/ ./app/Http/controllers
   allow_failure: false
 
 phpstan:
   stage: CodeStandards
   script:
-    - phpstan analyse ./app/http/controllers/ --level=max
+    - phpstan analyse ./app/Http/controllers --level=max
   allow_failure: false
 
 phpunit:
