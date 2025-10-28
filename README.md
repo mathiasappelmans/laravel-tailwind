@@ -131,11 +131,17 @@ Then retry    php artisan migrate:fresh
 
 ### Deploy on VPS
 * You can use the provided Dockerfile and docker-compose.yml to deploy the application on a VPS.
+or
+git pull
+npm run build
+php artisan migrate --force
+
+for login test in prod : email:john@doe.be password:pwd
 
 
 
 
-### Debugbar is hidden in app.css
+### Laravel Debugbar is hidden in app.css
 .phpdebugbar{
     visibility: hidden;
 }
