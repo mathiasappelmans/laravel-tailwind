@@ -20,7 +20,7 @@ phpcs:
 phpstan:
   stage: CodeStandards
   script:
-    - phpstan analyse ./src --level=max
+    - phpstan analyse . --level=max
   allow_failure: false
 
 phpunit:
