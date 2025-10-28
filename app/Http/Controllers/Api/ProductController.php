@@ -10,6 +10,8 @@ class ProductController extends Controller
 {
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        return ProductResource::collection(Product::orderBy('created_at', 'desc')->paginate(8));
+        $products = Product::paginate(8);
+
+        return ProductResource::collection($products);
     }
 }
