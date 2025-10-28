@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        $products = Product::query()->get();
+        $products = Product::all();
 
         return ProductResource::collection($products::paginate(5));
     }
