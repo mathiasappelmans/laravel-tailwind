@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(Request $req)
+    public function index(Request $req): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         return ProductResource::collection(Product::paginate(5));
     }

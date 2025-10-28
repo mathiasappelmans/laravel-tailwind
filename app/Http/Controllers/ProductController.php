@@ -17,7 +17,7 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(Request $req, Weather $weather) : View
+    public function index(Request $req, Weather $weather): View
     {
         /* Query Builder: https://laravel.com/docs/11.x/queries */
 

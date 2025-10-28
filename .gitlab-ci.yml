@@ -17,7 +17,7 @@ phpcs:
     - phpcs --standard=PSR12 --ignore=vendor/ app/Http/Controllers
   allow_failure: false
 
-phpstan:
+larastan:
   stage: CodeStandards
   script:
     - phpstan analyse app/Http/Controllers --level=max
