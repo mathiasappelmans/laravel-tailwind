@@ -2,18 +2,39 @@
 
 # This is a Laravel-Tailwind e-shop demo
 
-### Laravel topics included:
+```
+git clone git@gitlab.com:mathiasappelmans/laravel-tailwind.git
+```
 
-- routes
-- views 
-- controllers
-- models (factories, seeders)
-- database multi-connections
-- tests phpunit and features tests
+## Laravel topics included in this project :
 
-### Install and serve on localhost
+- Gitlab CI/CD pipeline (.gitlab-ci.yml)
+- Dockerfile and compose.yaml for local development
+- Tests phpunit and features tests, Pest browser tests
+- Routes, Blade Template, Controllers, API Routes, Middleware, dedicated Request classes for validation
+- Eloquent Relationships (one to many, many to many, has many through, polymorphic relations)
+- Migrations and seeders
+- models (factories, relationships, scopes)
+- database sqlite or mysql
 
-* Copy .env.example and rename .env or .env local
+## About Laravel new install
+Laravel 12 is out of the box with Tailwind, Vite Bundler and HMR (Hot Module Replacement) for hot refresh frontend development.
+```
+composer create-project laravel/laravel example-app
+cd example-app
+npm i
+npm run dev
+// open another terminal
+php artisan serve
+```
+
+
+## Install and serve on localhost
+
+* Copy .env.example and rename .env (or .env.local)
+```
+cp .env.example .env
+```
 * Configure your .env file database connection
     * for SQLite, your system need php SQLite installation
     [https://doc.dotdev.be/sql/sqlite](https://doc.dotdev.be/sql/sqlite)
@@ -28,46 +49,39 @@
     * Install VSCode extension SQLite3 editor from yy0931 to view and manage your DB
 * Generate your APP_KEY
 ```
-php artisan key:generate
+php artisan key:generate  --env=testing
 ```
 - run `composer install` // vendor dependencies (composer.json)
-- run `npm install --force && npm run dev` // node_modules default frontend dependencies (package.json)
-- run `php artisan migrate`, create tables and populate 'product' table
+- run `npm i && npm run dev` // node_modules default frontend dependencies (package.json)
+- run `php artisan migrate` to create tables and populate 'product' table
 - or run `php artisan migrate:fresh` if you have allready a populated db
 - The `fresh` command drops all tables and then re-runs all migrations from scratch. Unlike `refresh`, it doesn't roll back the migrations – it simply drops the tables and runs the `up()` methods again.
-- you can change the populate migration, run `php artisan migrate:rollback`, change the migrations files and run `php artisan migrate`
+- update the database structure with `php artisan make:migration <some_name>` --table=<product>
+- If you want to update manually an existing migration file, first run `php artisan migrate:rollback`, then update the migration file, and finally run `php artisan migrate`
 - run `php artisan serve` 
 
 ---
 
-# How to write and run TESTS on this Laravel App
-
-# Laravel App including Eloquent Relationships TESTS and PHPUnit TESTS
-
-### Laravel testing documentation
+# Testing : How to write and run TESTS (Feature Tests, Unit Tests, Pest browser tests)
 
 source : https://laravel.com/docs/12.x/testing
 
 ### How to use this repository
-You do not need to (but you can) serve the app to run the tests, but you need a database to run this tests.
+You do not need to (but you can) `php artisan serve` this App to run the Tests, but you need a database to test persistent datas.
+
 For this tests you can use MySQL or SQLite.
-But if you use your existing populated database, be aware that the tests will empty your database and run all migrations again before running each test, because of using `use RefreshDatabase` in the test class.
+
+But if you use your existing populated database, be carefull that the tests will empty your database and run all migrations again before running each test, because of using `use RefreshDatabase` in the test class.
+
 So it is better to use a separate SQLite database for testing.
+
 Therefore, you need to create an .env.testing, a separate connection in `config/database.php` and connect it in `phpunit.xml`.
 
 The .env.testing will be used automatically when you run `php artisan test` or `vendor/bin/phpunit`.
+
 The .env or .env.local will be used when you serve the app with `php artisan serve`.
 
-### Use MySQL to serve the app
-1. Copy and rename `.env.example` to `.env` or `.env.local` (the one you do not commit to git)
-1b. configure APP_ENV=local
-2. Generate an APP_KEY in it : `php artisan key:generate`
-3. Create a new DB and name it 'project' in your database manager (phpmyadmin, wamp, etc...)
-4. Configure your MySQL connection with this DB name in this .env file 
-5. Run the migrations `php artisan migrate`.
-6. Serve the app on localhost:8000 `php artisan serve`
-
-### Use a testing env with SQLite to run the tests (in memory or on disk)
+## Step by step to create a testing environment with SQLite in memory database
 1. Copy and rename `.env.example` to `.env.testing`
 2. configure APP_ENV=Testing in it
 3. remove all DB_ entries from it
@@ -91,13 +105,13 @@ To Run a single Test : `php artisan test --filter test_task_with_no_user` or `ve
 
 To Run all Tests at once : `php artisan test` or `vendor/bin/phpunit`
 
-Remind, BE CAREFULL !! the `use RefreshDatabase` instruction in `tests/Feature/RelationshipsTest.php` will empty the DB and run all migrations again before running each test.
+Remember, BE CAREFULL !! the `use RefreshDatabase` instruction in `tests/Feature/MyTest.php` will empty the DB and run all migrations again before running each test.
 
 Finally, run 
 	php artisan optimize:clear
  to clear the caches if needed.
 
-### You may encounter MySQL error key too long
+### ! Tips: MySQL error key too long
 
 Solution 1:
 
@@ -115,6 +129,13 @@ with
 
 Then retry    php artisan migrate:fresh
 
+### Deploy on VPS
+* You can use the provided Dockerfile and docker-compose.yml to deploy the application on a VPS.
 
 
 
+
+### Debugbar is hidden in app.css
+.phpdebugbar{
+    visibility: hidden;
+}

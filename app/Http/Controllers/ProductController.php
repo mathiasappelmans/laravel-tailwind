@@ -48,15 +48,29 @@ class ProductController extends Controller
     $product->name = 'updated name';
     $product->save();
 
-    /* DELETE */
+    /* DELETE from db */
     $product->delete();
     $product_2->delete();
+    Product::find(17)?->delete();
+    Product::find(18)?->delete();
 
     /* RELATION */
     $category_name = Product::all()->first()->category?->name; // needs belongsTo() in Model
-    $products = Category::find(6)?->posts; // needs hasMany() in Model
+    $products = Category::find(4)->products; // ok, category with id=4 exists
+    // $products = Category::find(6)->products; // Nok, category with id=6 does not exists, php error: Attempt to read property "products" on null
+    $products = Category::find(4)->brol; // prop 'brol' does not exist in Category Model --> return null
+    // $products = Category::find(6)->brol; // error: Attempt to read property "brol" on null
+    $products = Category::find(6)?->brol; // ok : return null, category with id=6 does not exists
 
-    $products = Product::orderBy('created_at', 'desc')->paginate(8)->appends(['sort' => 'votes']);
+    // pagination with 8 items per page
+    $products = Product::orderBy('created_at', 'desc')->paginate(8)->appends(['sort' => 'category.name']);
+
+    /*
+    // with query string in the url http://localhost:8000/?q=tablets
+    $q = $req->input('q');
+    $category = Category::where('name', ucfirst($q))->first()->id;
+    $products = Product::where('category_id', $category)->orderBy('name', 'desc')->paginate(8);
+    */
 
     return view('product.index', [
       "products" =>$products

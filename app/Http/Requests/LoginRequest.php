@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => 'required|email',
             'password' => 'required|min:3',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+            //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

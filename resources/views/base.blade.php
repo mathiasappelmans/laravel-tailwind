@@ -24,13 +24,11 @@
                             <img class="block w-auto h-8" src="/docs/dotdev-logo.png" alt="">
                         </a>
                     </div>
-                    <div class="flex">
+                    <div class="flex gap-4">
+
                         {{-- button my cart --}}
                         <button id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button"
-                            class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
-                            <span class="sr-only pointer-events-none">
-                                Cart
-                            </span>
+                            class="inline-flex items-center rounded-lg justify-center gap-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-xs font-sm leading-none text-gray-900 dark:text-white">
                             <svg class="w-5 h-5 lg:me-1 pointer-events-none" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                 viewBox="0 0 24 24">
@@ -39,18 +37,12 @@
                                     d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
                             </svg>
                             <span class="pointer-events-none">My Cart</span>
-                            <svg class="w-4 h-4 text-gray-900 dark:text-white pointer-events-none" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m19 9-7 7-7-7" />
-                            </svg>
                         </button>
 
                         {{-- my cart dropdown --}}
                         <div id="myCartDropdown1"
                             class="z-40 mx-auto max-w-sm space-y-4 overflow-hidden rounded-lg p-4 antialiased shadow-lg bg-gray-900 focus:outline-none transition ease-in-out duration-500 opacity-0"
-                            style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-50px, 45px);">
+                            style="position: absolute; margin: 0px; transform: translate(-50px, 45px);">
                             <div class="grid grid-cols-2">
                                 <div>
                                     <a href="#"
@@ -209,9 +201,9 @@
 
                         {{-- user menu --}}
                         <button id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button"
-                            class="inline-flex items-center mr-2 rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
+                            class="inline-flex items-center px-1 rounded-lg justify-center gap-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-xs font-medium text-gray-900 dark:text-white">
                             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                width="20" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-width="2"
                                     d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                             </svg>
@@ -221,12 +213,6 @@
                             @guest
                                 <a href="{{ route('auth.login') }}" class="text-white">Sign In</a>
                             @endguest
-                            <svg class="w-4 h-4 text-gray-900 dark:text-white ms-1" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m19 9-7 7-7-7" />
-                            </svg>
                         </button>
 
                         @auth
@@ -288,7 +274,7 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
         @yield('content')

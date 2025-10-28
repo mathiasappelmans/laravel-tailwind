@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .phpdebugbar{
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 

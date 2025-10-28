@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MtappController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Models\Profile;
@@ -24,7 +25,9 @@ use Illuminate\Support\Facades\Session;
 // simple route
 Route::get('/', [ProductController::class, 'index'])->name('home')->middleware('ip');
 
+Route::get('/mtapp', [MtappController::class, 'index'])->name('mtapp')->middleware('auth');
 // group route
+
 Route::prefix('/products')->name('products.')->controller(ProductController::class)->group( function () {
 
     Route::get('/', 'index')->name('index');
@@ -38,17 +41,22 @@ Route::prefix('/products')->name('products.')->controller(ProductController::cla
     Route::delete('/{id}', 'destroy')->name('destroy');
 });
 
-Route::get('/login', function (Request $request) {
-    return User::first()->createToken('auth_token')->plainTextToken;
-})->name('auth.login');
 
-//Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'doLogin']);
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login'); // to form
+Route::post('/login', [AuthController::class, 'dologin']); // submit
 Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-// CRUD shortcut route
+// API token route (for testing purpose only)
+// this route will return a generated token for the first user in the users table
+// A generated token can be used to access API routes that are protected by sanctum middleware
+// without asking the user to login via a form in a login page
+/* Route::get('/login', function (Request $request) {
+    return User::first()->createToken('auth_token')->plainTextToken;
+})->name('auth.login'); */
+
+// CRUD shortcut route for Product management (except 'show' method)
 Route::prefix('admin')->name('admin.')->group(function () {
-  Route::resource('product', ProductController::class)->except(['']);
+  Route::resource('product', ProductController::class)->except(['show']);
 });
 
 // test dev connection DB
