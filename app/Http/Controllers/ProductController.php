@@ -60,7 +60,7 @@ class ProductController extends Controller
 
         // Nok, category with id=6 does not exists, php error: Attempt to read property "products" on null
         // $products = Category::find(6)->products;
-        
+
         $products = Category::find(4)->brol; // prop 'brol' does not exist in Category Model --> return null
         // $products = Category::find(6)->brol; // error: Attempt to read property "brol" on null
         $products = Category::find(6)?->brol; // ok : return null, category with id=6 does not exists
