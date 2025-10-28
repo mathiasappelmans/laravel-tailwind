@@ -26,7 +26,6 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credentials)) { // return true or false + puts the user in the session
-
             // Regenerating the session ID is often done in order to prevent malicious users
             // from exploiting a session fixation attack on your application.
             $req->session()->regenerate();
