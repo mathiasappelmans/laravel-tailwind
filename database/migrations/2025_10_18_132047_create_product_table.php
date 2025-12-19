@@ -12,16 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->longText('description')->nullable();
-            $table->string('image')->nullable();
-            $table->decimal('price', 8, 2)->nullable();
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('set null');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('product')) {
+            Schema::create('product', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->longText('description')->nullable();
+                $table->string('image')->nullable();
+                $table->decimal('price', 8, 2)->nullable();
+                $table->unsignedBigInteger('category_id')->nullable();
+                $table->foreign('category_id')->references('id')->on('category')->onDelete('set null');
+                $table->timestamps();
+            });
+        }
 
         $data =  array(
             [
