@@ -7,7 +7,6 @@
 /storage/*.key
 /vendor
 .nginx
-.composer.lock
 .env
 .env.backup
 .env.production
