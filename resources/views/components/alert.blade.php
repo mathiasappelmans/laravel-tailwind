@@ -1,4 +1,6 @@
-<div class="{{ $bg }} px-4 py-3 shadow-md rounded-md" role="alert">
+<div
+    {{ $attributes->merge(['class' => "$bg px-4 py-3 shadow-md rounded-md"]) }}
+    role="alert">
   <div class="flex">
     <div class="py-1">
         <svg class="fill-current h-6 w-6 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -6,7 +8,8 @@
         </svg>
     </div>
     <div>
-      <p class="">{{ $slot }}</p>
+        {{-- $slot is the 'children' (text in blade "Some informations") --}}
+      <p class=""> {{ $slot }} </p>
       <p class="font-bold">Our privacy policy has changed</p>
       <p class="text-sm">Make sure you know how these changes affect you.</p>
     </div>

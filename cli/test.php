@@ -1,11 +1,10 @@
 <?php
-$path = __DIR__.DIRECTORY_SEPARATOR.'test.txt';
-file_put_contents($path, ' Hello World!', FILE_APPEND);
 
-echo file_get_contents($path);
+// Test file operations in CLI: `php cli/test.php`
 
-// $posts = file_get_contents('http://jsonplaceholder.typicode.com/posts'); // !! do not use file_get_contents for url fetch
+$path = __DIR__.DIRECTORY_SEPARATOR.'output.txt';
 
-// echo file_put_contents($path, $posts, FILE_APPEND);
+// It is not safe fetching URL with file_get_contents in real applications
+$posts = file_get_contents('http://jsonplaceholder.typicode.com/posts');
 
-// echo file_get_contents($path);
+file_put_contents($path, $posts, FILE_APPEND);

@@ -17,8 +17,25 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
+    // inject Weather service in the constructor
+    public function __construct(private Weather $weather)
+    {
+        // $this->middleware('auth')->only(['index', 'show']);
+        // $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    // inject Weather service in the index() method
     public function index(Request $req, Weather $weather): View
     {
+        // List all services (bindings) from service container
+        // dump(app()->getBindings());
+
+        //dump(Auth::user()->name);
+
+        //dd($weather->isSunnyTommorow()); // same as
+        //dd($this->weather->isSunnyTommorow());
+
+
         /* Query Builder: https://laravel.com/docs/11.x/queries */
 
         /* SELECT */

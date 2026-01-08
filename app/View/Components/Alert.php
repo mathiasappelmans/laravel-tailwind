@@ -11,7 +11,10 @@ class Alert extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $bg)
+    public function __construct(
+        public string $bg = 'bg-blue-100',
+        public string $text = 'text-blue-800'
+    )
     {
         //
     }

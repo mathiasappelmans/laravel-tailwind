@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Dotdev Creative Web Development')
+@section('title', 'Our Products')
 
 @section('content')
 
@@ -19,16 +19,19 @@
       $bg = "bg-indigo-300 text-indigo-900";
     @endphp
 
-    <x-alert :$bg>
-        Some informations
-    </x-alert>
+<x-alert :$bg class="underline" id="test">
+    Some informations
+</x-alert>
+{{-- same as --}}
+{{-- <x-alert :bg="$bg">Some informations</x-alert> --}}
+{{-- <x-alert bg={{$bg}}>Some informations</x-alert> --}}
+
 
     <livewire:counter />
     @lifewire('counter')
 
-    <!--x-alert :type=$type></x-alert -->
+    <x-meteo></x-meteo>
 
-    <!-- x-meteo></!-- -->
     @empty(!$products)
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10">
         @foreach ($products as $product )

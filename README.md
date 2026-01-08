@@ -29,19 +29,22 @@ php artisan serve
 ```
 
 
-## Install and serve on localhost
+# Part 1 - Development: Install and serve on localhost
 
 * Copy .env.example and rename .env (or .env.local)
 ```
 cp .env.example .env
 ```
-* Configure your .env file database connection
-    * for SQLite, your system need php SQLite installation
+* Change env to local, testing or production
+```
+APP_ENV=local
+```
+* Configure your .env file for SQLite database connection
+    * Your system need php SQLite installation
     [https://doc.dotdev.be/sql/sqlite](https://doc.dotdev.be/sql/sqlite)
-    ```
-    Activate extension=pdo_sqlite in php.ini
-    ```
-    Create your DB file in /database folder or copy paste an existing sqlite file from anywhere
+    and activation of extension=pdo_sqlite in php.ini
+    
+    * Create your DB file
     ```
     # create new file
     touch database/database.sqlite
@@ -62,18 +65,24 @@ php artisan key:generate  --env=testing
 
 ---
 
-# Testing : How to write and run TESTS (Feature Tests, Unit Tests, Pest browser tests)
+# Part2 - Testing : How to write and run TESTS (Feature Tests, Unit Tests, Pest browser tests)
 
 source : https://laravel.com/docs/12.x/testing
 
-### How to use this repository
-You do not need to (but you can) `php artisan serve` this App to run the Tests, but you need a database to test persistent datas.
+### Important notes about Testing with Laravel
+The App is served (`php artisan serve`) on SQLite file database.sqlite in dev, bUt with MYSQL on Production VPS.
 
-For this tests you can use MySQL or SQLite.
+In testing environment you can use SQLite not persistent in-memory database or the separate persistent SQLite file testing.sqlite
 
-But if you use your existing populated database, be carefull that the tests will empty your database and run all migrations again before running each test, because of using `use RefreshDatabase` in the test class.
+If you need to keep your existing datas, populated in your database.sqlite, be carefull that if you run the tests on it
 
-So it is better to use a separate SQLite database for testing.
+it will empty your database.sqlite and run all migrations again before running each test, because of using `use RefreshDatabase` in the test class.
+
+Note that the migrations populate the product and category tables with 12 default products and 4 categories.
+
+So it is better to use a separate testing.sqlite for testing.
+
+You can easily empty and populate again your testing database with `php artisan  --env=testing migrate` (with :fresh or :refresh) and `php artisan  --env=testing migrate:rollback` 
 
 Therefore, you need to create an .env.testing, a separate connection in `config/database.php` and connect it in `phpunit.xml`.
 
@@ -81,24 +90,41 @@ The .env.testing will be used automatically when you run `php artisan test` or `
 
 The .env or .env.local will be used when you serve the app with `php artisan serve`.
 
-## Step by step to create a testing environment with SQLite in memory database
-1. Copy and rename `.env.example` to `.env.testing`
-2. configure APP_ENV=Testing in it
-3. remove all DB_ entries from it
-4. Generate app key : `php artisan key:generate --env=testing`
-5. Add a connection in `config/database.php`
+## Create a testing environment with SQLite
+1. PHPUnit needs Vite manifest, so run `npm run build` once before running tests.
+2. Copy and rename `.env.example` -> `.env.testing`
+3. Change APP_ENV=Testing
+4. Remove lines DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD
+5. Generate app key : `php artisan key:generate --env=testing`
+6. If you want an in-memory temporary testing DB  `phpunit.xml` :
 ```
-'sqlite' => [
+<env name="DB_CONNECTION" value="sqlite"/>
+<env name="DB_DATABASE" value=":memory:">
+```
+7. If you want a persistent testing SQLite DB, create a file database/testing.sqlite and add a new connection to `config/database.php`
+
+```
+'testing-sqlite' => [
             'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'database' => env('DB_DATABASE', database_path('testing.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 ```
 And connect it in `phpunit.xml`
 ```
-<env name="DB_CONNECTION" value="sqlite"/>
-<env name="DB_DATABASE" value=":memory:"/>
+<env name="DB_CONNECTION" value="testing-sqlite"/>
+<!-- comment this line if you use a real-on-file sqlite DB  -->
+<!-- env name="DB_DATABASE" value=":memory:"/ -->
+```
+
+You can migrate a specific environment with `artisan --env=testing migrate`
+
+Or rollback with `artisan --env=testing migrate:rollback`
+
+But you need to configure .env.testing before running these commands
+```
+DB_CONNECTION=testing-sqlite
 ```
 
 To Run a single Test : `php artisan test --filter test_task_with_no_user` or `vendor/bin/phpunit --filter test_task_with_no_user`

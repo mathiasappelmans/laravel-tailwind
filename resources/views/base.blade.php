@@ -11,7 +11,7 @@
 </head>
 
 <body class="p-5 bg-gray-900 antialiased ">
-    <div class="md:container md:mx-auto">
+    <div class="md:container md:mx-auto dark:text-white">
         <!-- NAVBAR -->
         <div class="bg-gray-800 antialiased">
             <div class="px-2 mx-auto 2xl:px-0 py-4">
@@ -223,55 +223,12 @@
                             </form>
                         @endauth
 
-                        {{-- hamburger --}}
-                        <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1"
-                            aria-controls="ecommerce-navbar-menu-1" aria-expanded="false"
-                            class="hidden inline-flex sm:hidden items-center justify-center hover:bg-gray-100 rounded-md dark:hover:bg-gray-700 p-2 text-gray-900 dark:text-white">
-                            <span class="sr-only">
-                                Open Menu
-                            </span>
-                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                width="0" height="0" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                                    d="M5 7h14M5 12h14M5 17h14" />
-                            </svg>
-                        </button>
-
                         <!-- Github -->
                         <div class="text-white">
                             <a href="https://github.com/tomatoweb/laravel-tailwind" target="_blank"
                                 class="bg-green-600 rounded-lg px-2 py-1 flex h-8 justify-center text-white">
                                 <img alt='' class="" src="/docs/64px-Octicons-mark-github.svg.png" />
                             </a>
-                        </div>
-
-                        <div id="userDropdown1"
-                            class="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
-                            <ul class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
-                                <li><a href="#" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        My Account </a></li>
-                                <li><a href="#" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        My Orders </a></li>
-                                <li><a href="#" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        Settings </a></li>
-                                <li><a href="#" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        Favourites </a></li>
-                                <li><a href="#" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        Delivery Addresses </a></li>
-                                <li><a href="#" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        Billing Data </a></li>
-                            </ul>
-                            <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
-                                <a href="#" title=""
-                                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    Sign Out </a>
-                            </div>
                         </div>
                     </div>
                 </div>
