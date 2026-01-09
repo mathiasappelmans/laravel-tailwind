@@ -1,3 +1,4 @@
+ajout de texte pour tester le commit/push via vscode
 [Laravel-Tailwind](https://gitlab.com/mathiasappelmans/laravel-tailwind)
 
 # This is a Laravel-Tailwind e-shop demo
