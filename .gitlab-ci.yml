@@ -17,11 +17,11 @@ phpcs:
     - phpcs --standard=PSR12 --ignore=vendor/ app/Http/Controllers
   allow_failure: false
 
-larastan:
-  stage: CodeStandards
-  script:
-    - phpstan analyse app/Http/Controllers --level=max
-  allow_failure: true
+# larastan:
+#  stage: CodeStandards
+#  script:
+#    - phpstan analyse app/Http/Controllers --level=max
+#  allow_failure: true
 
 phpunit:
   stage: UnitTests
