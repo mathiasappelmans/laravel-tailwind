@@ -49,9 +49,30 @@ APP_ENV=local
     * Create your DB file
     ```
     # create new file
-    touch database/database.sqlite
+    touch database/database.sqlite // or dev.sqlite
     ```
     * Install VSCode extension SQLite3 editor from yy0931 to view and manage your DB
+* Or configure your .env file for MYSQL database connection
+    ```
+    # DB_CONNECTION=mysql
+    # DB_HOST=127.0.0.1
+    # DB_PORT=3306
+    # DB_DATABASE=******
+    # DB_USERNAME=******
+    # DB_PASSWORD=******
+    
+    ```
+    * Start your local mysql server (mariadb, xampp, mamp, lamp, wamp, ...)
+    
+    * check (or create) your DB
+    ```
+    mysql -u <username> -p
+    SHOW DATABASES;
+    USE <database_name>;
+    SHOW TABLES;
+    DESCRIBE <table_name>; // structure
+    SELECT * FROM <table_name>; // data    
+    ```
 * Generate your APP_KEY
 ```
 php artisan key:generate  --env=testing
