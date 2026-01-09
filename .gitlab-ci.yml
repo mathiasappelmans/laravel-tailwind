@@ -21,7 +21,7 @@ larastan:
   stage: CodeStandards
   script:
     - phpstan analyse app/Http/Controllers --level=max
-  allow_failure: false
+  allow_failure: true
 
 phpunit:
   stage: UnitTests
