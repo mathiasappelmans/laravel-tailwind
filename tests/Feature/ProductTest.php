@@ -11,7 +11,7 @@ use Tests\TestCase;
 // php artisan test --filter ProductTest
 class ProductTest extends TestCase
 {
-    //use RefreshDatabase, WithFaker;
+    use RefreshDatabase, WithFaker;
 
     // php artisan test --filter test_example
     public function testExample(): void
@@ -20,7 +20,7 @@ class ProductTest extends TestCase
 
         dump($user->name);
 
-        $response = $this->get(''); // or '/'
+        $response = $this->get('/'); // or '/'
 
         $response->assertStatus(200);
     }

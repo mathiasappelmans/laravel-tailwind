@@ -92,21 +92,33 @@ php artisan key:generate  --env=testing
 source : https://laravel.com/docs/12.x/testing
 
 ### Important notes about Testing with Laravel
-The App is served (`php artisan serve`) on SQLite file database.sqlite in dev, bUt with MYSQL on Production VPS.
 
-In testing environment you can use SQLite not persistent in-memory database or the separate persistent SQLite file testing.sqlite
+Need to run __Vite hot reload__, otherwise tests get('/') will resutl in response 500 status code
+```
+npm run dev
+```
 
-If you need to keep your existing datas, populated in your database.sqlite, be carefull that if you run the tests on it
+The App is served (`php artisan serve`) on SQLite file database.sqlite in dev, but with MYSQL on Production VPS.
 
-it will empty your database.sqlite and run all migrations again before running each test, because of using `use RefreshDatabase` in the test class.
+In testing environment you can use SQLite not persistent in-memory database or the separate persistent SQLite testing.sqlite, the first time testing you need to create this file database/testing.sqlite
+This DB will be automatic populated with : 
 
-Note that the migrations populate the product and category tables with 12 default products and 4 categories.
+__migration_create_table_product and migration_create_table_category files (one to many relation)__
+
+it will empty your testing.sqlite and run all migrations again before running each test, because of using `use RefreshDatabase` in the test class.
+
+The migrations populate the product and category tables with 12 default products and 4 categories.
 
 So it is better to use a separate testing.sqlite for testing.
+And database.sqlite for development. (to switch in .env)
+On VPS production it uses MYSQL.
+
+You need to create an .env.testing, a separate connection in `config/database.php` and connect it in `phpunit.xml`. 
+
+phpunit.xml  --> DB_CONNECTION" value="testing-sqlite"
+config/database  --> "connections" 'testing-sqlite'
 
 You can easily empty and populate again your testing database with `php artisan  --env=testing migrate` (with :fresh or :refresh) and `php artisan  --env=testing migrate:rollback` 
-
-Therefore, you need to create an .env.testing, a separate connection in `config/database.php` and connect it in `phpunit.xml`.
 
 The .env.testing will be used automatically when you run `php artisan test` or `vendor/bin/phpunit`.
 

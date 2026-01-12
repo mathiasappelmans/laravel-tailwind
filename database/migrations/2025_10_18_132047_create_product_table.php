@@ -25,6 +25,102 @@ return new class extends Migration
             });
         }
 
+        $data =  array(
+            [
+                'name' => 'Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max',
+                'description' => 'Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max',
+                'image' => 'AppleiMac27p.png',
+                'price' => 2499.99,
+                'category_id' => 3,
+            ],
+            [
+                'name' => 'Apple iPhone 15 Pro Max, 256GB, Blue Titanium',
+                'description' => 'Apple iPhone 15 Pro Max, 256GB, Blue Titanium',
+                'image' => 'AppleiPhone15Pro.png',
+                'price' => 1479.0,
+                'category_id' => 1,
+            ],
+            [
+                'name' => 'iPad Pro 13-Inch (M4): XDR Display, 512GB',
+                'description' => 'iPad Pro 13-Inch (M4): XDR Display, 512GB',
+                'image' => 'iPadPro13.png',
+                'price' => 1097.0,
+                'category_id' => 3,
+            ],
+            [
+                'name' => 'PlayStation®5 Console – 1TB, PRO Controller',
+                'description' => 'PlayStation®5 Console – 1TB, PRO Controller',
+                'image' => 'PlayStation5.png',
+                'price' => 749.0,
+                'category_id' => 4,
+            ],
+            [
+                'name' => 'Apple MacBook PRO Laptop with M2 chip',
+                'description' => 'Microsoft Xbox Series X 1TB Gaming Console',
+                'image' => 'MicrosoftXboxSeriesX.png',
+                'price' => 499.0,
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Apple MacBook PRO Laptop with M2 chip',
+                'description' => 'Apple MacBook PRO Laptop with M2 chip',
+                'image' => 'AppleMacBookPRO.png',
+                'price' => 1079.0,
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Apple Watch SE [GPS 40mm], Smartwatch',
+                'description' => 'Apple Watch SE [GPS 40mm], Smartwatch',
+                'image' => 'AppleWatchSE.png',
+                'price' => 699.0,
+                'category_id' => 1,
+            ],
+            [
+                'name' => 'Microsoft Surface Pro, Copilot+ PC, 13 Inch',
+                'description' => 'Microsoft Surface Pro, Copilot+ PC, 13 Inch',
+                'image' => 'MicrosoftSurfacePro.png',
+                'price' => 899.0,
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Apple iPhone 15 Pro Max, 256GB, Blue Titanium',
+                'description' => 'Apple iPhone 15 Pro Max, 256GB, Blue Titanium',
+                'image' => 'AppleiPhone15Pro.png',
+                'price' => 1479.0,
+                'category_id' => 1,
+            ],
+            [
+                'name' => 'PlayStation®5 Console – 1TB, PRO Controller',
+                'description' => 'PlayStation®5 Console – 1TB, PRO Controller',
+                'image' => 'PlayStation5.png',
+                'price' => 749.0,
+                'category_id' => 4,
+            ],
+            [
+                'name' => 'Apple MacBook PRO Laptop with M2 chip',
+                'description' => 'Apple MacBook PRO Laptop with M2 chip',
+                'image' => 'AppleMacBookPRO.png',
+                'price' => 1079.0,
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Apple Watch SE [GPS 40mm], Smartwatch',
+                'description' => 'Apple Watch SE [GPS 40mm], Smartwatch',
+                'image' => 'AppleWatchSE.png',
+                'price' => 699.0,
+                'category_id' => 1,
+            ],
+        );
+        foreach ($data as $datum){
+            $category = new Product();
+            $category->name =$datum['name'];
+            $category->description = $datum['description'];
+            $category->image = $datum['image'];
+            $category->price = $datum['price'];
+            $category->category_id = $datum['category_id'];
+            $category->save();
+        }
+
         
     }
 
