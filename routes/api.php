@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// dev : http://localhost:8000/api/products
 Route::get('/products', [App\Http\Controllers\Api\ProductController::class, 'index']);
+
+// dev : http://localhost:8000/api/weather
 Route::get('/weather', [App\Http\Controllers\Api\WeatherController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) { // redirect to /login
