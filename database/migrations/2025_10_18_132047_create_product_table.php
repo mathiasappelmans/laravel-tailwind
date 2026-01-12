@@ -25,7 +25,10 @@ return new class extends Migration
             });
         }
 
-        $data =  array(
+        // It is not a good practice to seed data in migration files.
+        // It's better to use seeders for that purpose, like this 'php artisan migrate:fresh --seed --seeder=ProductSeeder --env=testing'
+        // This is just for debug database insertions purposes only for development (test tables types and structure).
+        /* $data =  array(
             [
                 'name' => 'Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max',
                 'description' => 'Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max',
@@ -120,7 +123,7 @@ return new class extends Migration
             $category->category_id = $datum['category_id'];
             $category->save();
         }
-
+ */
         
     }
 

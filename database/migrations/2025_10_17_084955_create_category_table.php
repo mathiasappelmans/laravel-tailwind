@@ -18,7 +18,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $data =  array(
+        // It is not a good practice to seed data in migration files.
+        // It's better to use seeders for that purpose, like this 'php artisan migrate:fresh --seed --seeder=ProductSeeder --env=testing'
+        // This is just for debug database insertions purposes only for development (test tables types and structure, index, foreign keys).
+        /* $data =  array(
             [
                 'name' => 'Smartphones',
             ],
@@ -36,7 +39,7 @@ return new class extends Migration
             $category = new Category();
             $category->name =$datum['name'];
             $category->save();
-        }
+        } */
     }
 
     /**

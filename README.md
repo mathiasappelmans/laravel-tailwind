@@ -86,6 +86,25 @@ php artisan key:generate  --env=testing
 - run `php artisan serve` 
 
 ---
+# Seed the databases
+
+```
+ php artisan migrate:fresh --seed --seeder=ProductSeeder --env=testing
+```
+
+**fresh** empty the database and run all migrations 
+
+**--env=testing** : empty and populate testing.sqlite
+
+Without **env** : empty and populate database.sqlite
+
+**--seed --seeder=ProductSeeder** : runs the database/seeders/ProductSeeder.php file.
+
+It creates and insert 7 categories and 12 products.
+
+---
+
+
 
 # Part2 - Testing : How to write and run TESTS (Feature Tests, Unit Tests, Pest browser tests)
 
