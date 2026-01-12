@@ -20,7 +20,7 @@ class ProductTest extends TestCase
 
         dump($user->name);
 
-        $response = $this->get('/'); // or '/'
+        $response = $this->get(''); /*      or '/'     */
 
         $response->assertStatus(200);
     }
